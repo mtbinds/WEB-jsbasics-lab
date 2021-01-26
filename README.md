@@ -8,7 +8,7 @@
 
 |Nom|Prénom|login|email|
 |--|--|--|--|
-| *Nom auteur* | *Prénom auteur*| *login auteur* | *email auteur* |
+| *Taoualit* | *Madjid*| *tm177375* | *madjid.taoualit@etu.univ-lehavre.fr* |
 
 ## Travail à réaliser
 
