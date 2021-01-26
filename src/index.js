@@ -4,7 +4,12 @@
  * @param {Number} i
  */
 export const isNumberEven = i => {
-  // TODO
+    if(i%2==0){
+        return true;
+    }
+    else {
+        return false;
+    }
 };
 
 /**
@@ -13,7 +18,13 @@ export const isNumberEven = i => {
  * @param {String} str
  */
 export const getFileExtension = str => {
-  // TODO
+    if (str.includes(".")) {
+        const index = str.lastIndexOf(".");
+        return str.substring(index + 1, str.length);
+    }
+    else {
+        return false;
+    }
 };
 
 /**
@@ -23,7 +34,16 @@ export const getFileExtension = str => {
  * @param {String} arr
  */
 export const longestString = arr => {
-  // TODO
+    let longestStr = 0;
+    let str;
+
+    for (let i = 0; i < arr.length; i++) {
+        if (typeof arr[i] === 'string' && arr[i].length > longestStr) {
+            longestStr = arr[i].length;
+            str = arr[i];
+        }
+    }
+    return str;
 };
 
 /**
@@ -32,7 +52,7 @@ export const longestString = arr => {
  * @param {String} str
  */
 export const reverseString = str => {
-  // TODO
+    return str.split("").reverse().join("");
 };
 
 /**
@@ -43,7 +63,10 @@ export const reverseString = str => {
  * @param {String} str
  */
 export const isPalindrome = str => {
-  // TODO
+    var re = /[\W_]/g;
+    var lowRegStr = str.toLowerCase().replace(re,'');
+    var reverseStr = lowRegStr.split('').reverse().join('');
+    return reverseStr === lowRegStr;
 };
 
 /**
@@ -51,7 +74,17 @@ export const isPalindrome = str => {
  * Return the sum all the numbers you find, anywhere in the nest of arrays.
  */
 export const nestedSum = arr => {
-  // TODO
+    let sum = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        if (typeof arr[i] === 'number') {
+            sum += arr[i];
+        }
+        else if (Array.isArray(arr[i])) {
+            sum += nestedSum(arr[i]);
+        }
+    }
+    return sum;
 };
 
 /**
@@ -73,7 +106,14 @@ export const nestedSum = arr => {
  * @param  {objects} elms
  */
 export const retireDe = (tab, ...elms) => {
-  // TODO
+    for (let i = 0; i < elms.length; i++) {
+        for (let j = 0; j < tab.length; j++) {
+            if (tab[j] == elms[i]) {
+                tab.splice(j, 1);
+            }
+        }
+    }
+    return tab;
 };
 
 /**
@@ -88,7 +128,16 @@ export const retireDe = (tab, ...elms) => {
  * // [5, 4, 3, 2, 1, 0]
  */
 export const aplatirRecursif = tab => {
-  //TODO
+    let tabConcat = [];
+    for (let i = 0; i < tab.length; i++) {
+        if (Array.isArray(tab[i])) {
+            tabConcat = tabConcat.concat(aplatirRecursif(tab[i]));
+        }
+        else {
+            tabConcat.push(tab[i]);
+        }
+    }
+    return tabConcat;
 };
 
 /**
@@ -106,19 +155,19 @@ export const aplatirRecursif = tab => {
  * @param {Array} tab
  */
 export const permutations = tab => {
-  if (tab.length <= 2) {
-    return tab.length === 2 ? [tab, [tab[1], tab[0]]] : tab;
-  }
-  return tab.reduce(
-    (acc, item, i) =>
-      acc.concat(
-        permutations([...tab.slice(0, i), ...tab.slice(i + 1)]).map(val => [
-          item,
-          ...val,
-        ])
-      ),
-    []
-  );
+    if (tab.length <= 2) {
+        return tab.length === 2 ? [tab, [tab[1], tab[0]]] : tab;
+    }
+    return tab.reduce(
+        (acc, item, i) =>
+            acc.concat(
+                permutations([...tab.slice(0, i), ...tab.slice(i + 1)]).map(val => [
+                    item,
+                    ...val,
+                ])
+            ),
+        []
+    );
 };
 
 /**
@@ -143,7 +192,17 @@ export const echantillon = tab => tab[Math.floor(Math.random() * tab.length)];
  * @param {string} fin
  */
 export const enumerer = (tab, separateur = ', ', fin = separateur) => {
-  // TODO
+    let str = "";
+    for (let i = 0; i < tab.length; i++) {
+        if (i === 0) {
+            str += tab[i];
+        } else if (i === tab.length - 1) {
+            str += fin + tab[i];
+        } else {
+            str += separateur + tab[i];
+        }
+    }
+    return str;
 };
 
 /**
@@ -154,5 +213,6 @@ export const enumerer = (tab, separateur = ', ', fin = separateur) => {
  * Utiliser `Array.prototype.sort()`, l'opérateur de destructuration (...) et `Array.prototype.slice()`
  */
 export const nMax = (tab, n = 1) => {
-  //TODO
+    let tri = tab.sort(function (a, b) { return b - a });
+    return tri.slice(0, n);
 };
