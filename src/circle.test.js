@@ -42,6 +42,8 @@ describe('Circle', () => {
     let c = new Circle(1, 1);
     c.moveTo(0, 0);
     c.coords.map((z) => expect(z).toBe(0));
+    expect(() => (c.moveTo("boom", 0))).toThrow();
+
   });
 
   test('radius can be changed to positive values only', () => {
@@ -50,6 +52,7 @@ describe('Circle', () => {
     expect(c.radius).toBe(12);
 
     expect(() => (c.radius = -12)).toThrow();
+    expect(() => (c.radius = "0")).toThrow();
   });
 
   test('area is read/write and modifies the radius. Positive values only', () => {
@@ -62,6 +65,8 @@ describe('Circle', () => {
     expect(c.radius).toBe(10);
 
     expect(() => (c.area = -12)).toThrow();
+    expect(() => (c.area = "0")).toThrow();
+
   });
 
   test('distance', () => {
@@ -69,7 +74,7 @@ describe('Circle', () => {
     const c2 = new Circle(10, 10, 1);
     // SQRT(2) * 10 =
     const expectedDistance = 10 * Math.sqrt(2);
-    expect(Circle.distance(c1, c2)).toBe(expectedDistance);
+    expect(Circle.distance(c1, c2)).toBeCloseTo(expectedDistance);
   });
 
   test('intersection', () => {
