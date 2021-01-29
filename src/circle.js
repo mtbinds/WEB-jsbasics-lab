@@ -40,10 +40,10 @@ export class Circle {
 
     set area(area) {
         if (typeof area !== 'number' ) {
-            throw  new Error('area should be a numbers');
+            throw  new Error('Circle area should be a numbers');
         }
         if ( area < 0 ) {
-            throw  new Error('area should be a positive numbers');
+            throw  new Error('Circle area should be a positive numbers');
         }
         this.radius = Math.sqrt(area / Math.PI);
     }
